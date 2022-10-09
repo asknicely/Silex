@@ -26,7 +26,7 @@ class StringToResponseListener implements EventSubscriberInterface
     /**
      * Handles string responses.
      *
-     * @param GetResponseForControllerResultEvent $event The event to handle
+     * @param ViewEvent $event The event to handle
      */
     public function onKernelView(ViewEvent $event)
     {
