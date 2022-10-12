@@ -1,11 +1,18 @@
 Silex, a simple Web Framework
 =============================
 
-**WARNING**: Silex is in maintenance mode only. Ends of life is set to June
+This is AskNicely's fork of silex/silex, which was abandoned in June
 2018. Read more on `Symfony's blog <https://symfony.com/blog/the-end-of-silex>`_.
 
 Silex is a PHP micro-framework to develop websites based on `Symfony
 components`_:
+
+As part of forking, we also took on our own versioning of silex to match the
+Symfony components Silex will support. v4.x for Symfony 4 components, v5.x for
+Symfony 5 components etc. The last version of silex/silex was 2.2.4 and
+supported Symfony 3 and PHP 7.4.
+
+Version 4+ of this fork also support PHP 8
 
 .. code-block:: php
 
@@ -30,7 +37,7 @@ The recommended way to install Silex is through `Composer`_:
 
 .. code-block:: bash
 
-    composer require silex/silex "~2.0"
+    composer require silex/silex "^4.0"
 
 Alternatively, you can download the `silex.zip`_ file and extract it.
 
