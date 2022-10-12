@@ -29,6 +29,7 @@
         "doctrine/dbal": "^2.2",
         "fig/link-util": "^1.1",
         "monolog/monolog": "^1.4.1",
+        "phpunit/phpunit": "^9.0",
         "rector/rector-prefixed": "^0.9.31",
         "swiftmailer/swiftmailer": "^5",
         "symfony/asset": "^4.0",
