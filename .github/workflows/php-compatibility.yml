@@ -1,4 +1,4 @@
-name: CI
+name: PHP Version Check
 
 on:
   push:
