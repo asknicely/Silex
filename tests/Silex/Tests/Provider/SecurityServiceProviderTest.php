@@ -347,7 +347,7 @@ class SecurityServiceProviderTest extends WebTestCase
 
         $request = Request::create('/');
         $app->boot();
-        $app['security.token_storage']->setToken(new UsernamePasswordToken('foo', 'foo', 'foo'));
+        $app['security.token_storage']->setToken(new UsernamePasswordToken('foo', 'foo', ['foo']));
 
         $app->get('/', function () { return 'foo'; });
         $app->handle($request);
