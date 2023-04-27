@@ -74,6 +74,9 @@ class HttpCacheServiceProviderTest extends TestCase
 
 class UnsendableResponse extends Response
 {
+    /**
+     * @return mixed
+     */
     public function send()
     {
         // do nothing
