@@ -32,7 +32,7 @@
         "fig/link-util": "^1.1",
         "monolog/monolog": "^2.2",
         "swiftmailer/swiftmailer": "^6.2",
-        "symfony/asset": "^5.3|<5.3",
+        "symfony/asset": "^5.4",
         "symfony/browser-kit": "^5.3",
         "symfony/config": "^5.3",
         "symfony/css-selector": "^5.3",
