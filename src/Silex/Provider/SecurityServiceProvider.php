@@ -50,7 +50,6 @@ use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureH
 use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler;
 use Symfony\Component\Security\Http\EntryPoint\BasicAuthenticationEntryPoint;
 use Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint;
-use Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint;
 use Symfony\Component\Security\Http\Event\LogoutEvent;
 use Symfony\Component\Security\Http\EventListener\DefaultLogoutListener;
 use Symfony\Component\Security\Http\Firewall;
@@ -166,11 +165,9 @@ class SecurityServiceProvider implements ServiceProviderInterface, EventListener
         $app['security.channel_listener'] = function ($app) {
             return new ChannelListener(
                 $app['security.access_map'],
-                new RetryAuthenticationEntryPoint(
-                    $app['request.http_port'] ?? 80,
-                    $app['request.https_port'] ?? 443
-                ),
-                $app['logger']
+                $app['logger'],
+                $app['request.http_port'] ?? 80,
+                $app['request.https_port'] ?? 443
             );
         };
 
