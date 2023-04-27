@@ -73,16 +73,13 @@ class LogListenerTest extends TestCase
     public function testExceptionListener(): void
     {
         $logger = $this->getMockBuilder(LoggerInterface::class)->getMock();
-        $logger
-            ->expects(self::at(0))
+        $logMessages = [];
+
+        $logger->expects(self::any())
             ->method('log')
-            ->with(LogLevel::CRITICAL, 'RuntimeException: Fatal error (uncaught exception) at '.__FILE__.' line '.(__LINE__ + 13))
-        ;
-        $logger
-            ->expects(self::at(1))
-            ->method('log')
-            ->with(LogLevel::ERROR, 'Symfony\Component\HttpKernel\Exception\HttpException: Http error (uncaught exception) at '.__FILE__.' line '.(__LINE__ + 9))
-        ;
+            ->willReturnCallback(function ($level, $message) use (&$logMessages) {
+                $logMessages[] = [$level, $message];
+            });
 
         $dispatcher = new EventDispatcher();
         $dispatcher->addSubscriber(new LogListener($logger));
@@ -91,5 +88,13 @@ class LogListenerTest extends TestCase
 
         $dispatcher->dispatch(new ExceptionEvent($kernel, Request::create('/foo'), HttpKernelInterface::SUB_REQUEST, new \RuntimeException('Fatal error')), KernelEvents::EXCEPTION);
         $dispatcher->dispatch(new ExceptionEvent($kernel, Request::create('/foo'), HttpKernelInterface::SUB_REQUEST, new HttpException(400, 'Http error')), KernelEvents::EXCEPTION);
+
+        self::assertEquals(
+            [
+                [LogLevel::CRITICAL, 'RuntimeException: Fatal error (uncaught exception) at '.__FILE__.' line '.(__LINE__ - 5)],
+                [LogLevel::ERROR, 'Symfony\Component\HttpKernel\Exception\HttpException: Http error (uncaught exception) at '.__FILE__.' line '.(__LINE__ - 5)]
+            ],
+            $logMessages
+        );
     }
 }
