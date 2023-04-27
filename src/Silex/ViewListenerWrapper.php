@@ -77,15 +77,15 @@ class ViewListenerWrapper
 
             $reflectionClass = $type && !$builtIn ? new \ReflectionClass($type->getName()) : null;
 
-            if ($reflectionClass && (!is_object($controllerResult) || !$reflectionClass?->isInstance($controllerResult))) {
+            if ($reflectionClass && (!is_object($controllerResult) || !$reflectionClass->isInstance($controllerResult))) {
                 return false;
             }
 
-            if (!is_array($controllerResult) && $type?->getName() === 'array') {
+            if (!is_null($type) && !is_array($controllerResult) && $type->getName() === 'array') {
                 return false;
             }
 
-            if (!is_callable($controllerResult) && method_exists($expectedControllerResult, 'isCallable') && $type?->getName() === 'callable') {
+            if (!is_null($type) && !is_callable($controllerResult) && method_exists($expectedControllerResult, 'isCallable') && $type->getName() === 'callable') {
                 return false;
             }
         }
