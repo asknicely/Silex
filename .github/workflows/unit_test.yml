@@ -43,10 +43,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php-versions }}
           coverage: none
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check PHP Version
+        run: php -v
 
       - name: 'Composer: Installing'
         uses: ramsey/composer-install@v2
