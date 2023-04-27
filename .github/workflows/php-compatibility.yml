@@ -33,6 +33,9 @@ jobs:
           php-version: ${{ matrix.php-version }}
           coverage: none
 
+      - name: Check PHP Version
+        run: php -v
+
       - name: Install composer dependencies
         uses: ramsey/composer-install@v2
         with:
