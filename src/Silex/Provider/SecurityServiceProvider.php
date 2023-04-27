@@ -17,6 +17,7 @@ use Silex\Api\BootableProviderInterface;
 use Silex\Api\ControllerProviderInterface;
 use Silex\Api\EventListenerProviderInterface;
 use Silex\Application;
+use Symfony\Bundle\SecurityBundle\Security\UserAuthenticator;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestMatcher;
@@ -90,7 +91,7 @@ class SecurityServiceProvider implements ServiceProviderInterface, EventListener
         $app['security.encoder.native.cost'] = 13;
 
         $app['security.authorization_checker'] = function ($app) {
-            return new AuthorizationChecker($app['security.token_storage'], $app['security.access_manager']);
+            return new AuthorizationChecker($app['security.token_storage'], $app['security.access_manager'], null, false);
         };
 
         $app['security.token_storage'] = function ($app) {
@@ -649,7 +650,7 @@ class SecurityServiceProvider implements ServiceProviderInterface, EventListener
 
         $app['security.authentication_provider.dao._proto'] = $app->protect(function ($name, $options) use ($app) {
             return function () use ($app, $name) {
-                return new DaoAuthenticationProvider(
+                return new UserAuthenticator(
                     $app['security.user_provider.'.$name],
                     $app['security.user_checker'],
                     $name,
