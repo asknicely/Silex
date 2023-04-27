@@ -91,7 +91,7 @@ class SecurityServiceProvider implements ServiceProviderInterface, EventListener
         $app['security.encoder.native.cost'] = 13;
 
         $app['security.authorization_checker'] = function ($app) {
-            return new AuthorizationChecker($app['security.token_storage'], $app['security.authentication_manager'], $app['security.access_manager']);
+            return new AuthorizationChecker($app['security.token_storage'], $app['security.access_manager']);
         };
 
         $app['security.token_storage'] = function ($app) {
