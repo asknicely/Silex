@@ -51,4 +51,4 @@ jobs:
           composer install
 
       - name: 'PHPUnit: Testing'
-        run: vendor/bin/simple-phpunit
+        run: ./vendor/bin/phpunit
