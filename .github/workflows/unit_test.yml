@@ -46,7 +46,9 @@ jobs:
         run: php -v
 
       - name: 'Composer: Installing'
-        run: composer install
+        run: |
+          composer clear-cache &&
+          composer install
 
       - name: 'PHPUnit: Testing'
         run: vendor/bin/simple-phpunit
