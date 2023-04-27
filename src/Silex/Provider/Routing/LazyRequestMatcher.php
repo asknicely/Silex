@@ -47,8 +47,10 @@ class LazyRequestMatcher implements RequestMatcherInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @return array
      */
-    public function matchRequest(Request $request): array
+    public function matchRequest(Request $request)
     {
         return $this->getRequestMatcher()->matchRequest($request);
     }
