@@ -11,9 +11,6 @@
 
 namespace Silex\Tests;
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 use ArrayObject;
 use Exception;
 use Fig\Link\GenericLinkProvider;

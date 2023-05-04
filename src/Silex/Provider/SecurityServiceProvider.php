@@ -128,8 +128,10 @@ class SecurityServiceProvider implements ServiceProviderInterface, EventListener
             return new MessageDigestPasswordEncoder();
         };
 
+        // NOTE: The '2y' in the fourth argument forces our password encoder to use Blowfish.
+        // Tread carefully if you want to change this. Test the change password/login process.
         $app['security.encoder.native'] = function ($app) {
-            return new NativePasswordEncoder(null, null, $app['security.encoder.native.cost']);
+            return new NativePasswordEncoder(null, null, $app['security.encoder.native.cost'], '2y');
         };
 
         $app['security.encoder.pbkdf2'] = function ($app) {
