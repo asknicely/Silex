@@ -1,5 +1,5 @@
 {
-    "name": "asknicely/silex",
+    "name": "silex/silex",
     "description": "The PHP micro-framework based on the Symfony Components",
     "keywords": ["microframework"],
     "homepage": "https://silex.symfony.com",
@@ -58,8 +58,7 @@
     },
     "replace": {
         "silex/api": "self.version",
-        "silex/providers": "self.version",
-        "silex/silex": "self.version"
+        "silex/providers": "self.version"
     },
     "autoload": {
         "psr-4": { "Silex\\": "src/Silex" }
